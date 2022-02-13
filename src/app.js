@@ -31,5 +31,6 @@ const createApp = () => {
     return app
 }
 
-const app = createApp()
-app.listen(3000)
+module.exports = {
+    createApp
+}
