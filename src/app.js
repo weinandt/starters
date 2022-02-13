@@ -7,7 +7,7 @@ const { ManualDI } = require('./manualDi')
 const { Resolvers } = require('./resolvers')
 const { addResolversToSchema } = require('@graphql-tools/schema')
 const cors = require('cors')
-
+const { Context } = require('./context')
 
 const readSchemaAsString = () => {
     const schemaAsString = fs.readFileSync(path.join(__dirname, 'schema.graphql'), { encoding: 'utf-8' })
@@ -27,9 +27,14 @@ const createApp = () => {
     app.use(cors())
     app.use(express.json())
 
-    app.use('/graphql', graphqlHTTP({
-        schema: schemaWithResolvers,
-        graphiql: true,
+    app.use('/graphql', graphqlHTTP(async (req, res, graphqlParams) => {
+        const context = await Context.createContext(req)
+
+        return {
+            schema: schemaWithResolvers,
+            graphiql: true,
+            context,
+        }
     }))
 
     return app
