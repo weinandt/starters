@@ -6,6 +6,7 @@ const fs = require('fs')
 const { ManualDI } = require('./manualDi')
 const { Resolvers } = require('./resolvers')
 const { addResolversToSchema } = require('@graphql-tools/schema')
+const cors = require('cors')
 
 
 const readSchemaAsString = () => {
@@ -23,6 +24,9 @@ const createApp = () => {
     })
 
     const app = express()
+    app.use(cors())
+    app.use(express.json())
+
     app.use('/graphql', graphqlHTTP({
         schema: schemaWithResolvers,
         graphiql: true,
