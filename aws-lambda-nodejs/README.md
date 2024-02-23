@@ -3,9 +3,10 @@
 Run an entire graphql server in a single lambda. Use aws api gateway to register a single http endpoint (/graphql).
 
 ## Run Locally
-`node src/localServer.js`
+1. `npm install`
+2. `node src/localServer.js`
 
-## Infrastructure Set Up
+## AWS Infrastructure Set Up
 1. Create lambda (don't add a trigger).
 1. Create a new api in api gateway (http api, not REST).
 1. Add the `/graphql` "route" to the api.
