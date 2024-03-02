@@ -1,4 +1,6 @@
+import { RequestContext } from "../context";
 import { Book, BookStore } from "./bookStore";
+import { GraphQLResolveInfo } from 'graphql';
 
 export class BookResolvers {
     private bookStore: BookStore
@@ -6,15 +8,14 @@ export class BookResolvers {
         this.bookStore = bookStore
     }
 
-    saveBook(parent: any, args: any, context: any, info: any): Book {
-        // TODO: make this strongly typed.
-        const book = args.book as Book
+    saveBook(_: any, args: {book: Book}, context: RequestContext, info: GraphQLResolveInfo): Book {
+        const book = args.book
         this.bookStore.saveBook(book)
 
         return book
     }
 
-    listBooks(parent: any, args: any, context: any, info: any): Book[] {
+    listBooks(_: any, __: any, context: RequestContext, info: GraphQLResolveInfo): Book[] {
         return this.bookStore.listBooks()
     }
 }
