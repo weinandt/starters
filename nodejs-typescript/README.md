@@ -10,3 +10,6 @@
 - Add a mutation example
 - Add unit tests
 - Add graphql test suite
+- Add the ability to store the current time
+- Add auth layer
+- Add pagination example

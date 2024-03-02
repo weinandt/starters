@@ -1,3 +1,8 @@
-type Query {
-  curTime: String!
+type Book {
+  name: String!
 }
+
+type Query {
+  listBooks: [String!]!
+}
+
