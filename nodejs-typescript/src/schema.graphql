@@ -3,6 +3,13 @@ type Book {
 }
 
 type Query {
-  listBooks: [String!]!
+  listBooks: [Book!]!
 }
 
+input BookInput {
+  name: String!
+}
+
+type Mutation {
+  saveBook(book: BookInput): Book!
+}
