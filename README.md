@@ -1,3 +1,9 @@
-# GraphQL Starters
+# Starters
 
-A set of example projects which can be used to bootstrap graphql apis.
+A set of starter projects with proper (manual) dependency injection.
+
+## Graphql
+- Servers for both typescript and plan node
+
+## Front End
+- React Webpack SPA
