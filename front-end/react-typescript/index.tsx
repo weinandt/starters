@@ -1,19 +1,4 @@
-<html>
-
-<body>
-    <div id="root"></div>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="importmap">
-        {
-          "imports": {
-            "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm",
-            "react-dom/client":"https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm"
-          }
-        }
-      </script>
-
-    <script type="text/babel" data-type="module">
-        import React, { StrictMode } from 'react';
+import React, { StrictMode } from 'react';
         import { createRoot } from 'react-dom/client';
 
         function MyButton() {
@@ -40,7 +25,3 @@
                 <App />
             </StrictMode>
         );
-    </script>
-</body>
-
-</html>

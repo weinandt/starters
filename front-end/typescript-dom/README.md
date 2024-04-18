@@ -15,3 +15,5 @@ Browser will automatically pull files based on relative imports, so only one int
 1. Why js extension is nessary on imports: https://github.com/microsoft/TypeScript/issues/16577#issuecomment-703190339
 2. Why module and module resolution are `NodeNext` in `tsconfig.json`
     - Typescript needs to know to look for the types of 3rd party libraries in the `node_modules` folder.
+3. Why package.json needs type module:
+    - Typescript will declare an 'exports' object in the output. CommonJS modules running in node have access to that, but the browser doesn't support it, so it needs to be declared.
