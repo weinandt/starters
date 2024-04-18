@@ -1,0 +1,46 @@
+<html>
+
+<body>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/+esm",
+            "react-com/client":"https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm"
+          }
+        }
+      </script>
+
+    <script type="text/babel" data-type="module">
+        import React, { StrictMode } from 'react';
+        import { createRoot } from 'react-dom/client';
+
+        function MyButton() {
+            return (
+                <button>
+                    I'm a button
+                </button>
+            );
+        }
+
+        let App = function MyApp() {
+            return (
+                <div>
+                    <h1>Welcome to my app</h1>
+                    <MyButton />
+                </div>
+            );
+        }
+
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(
+            <StrictMode>
+                <App />
+            </StrictMode>
+        );
+    </script>
+</body>
+
+</html>

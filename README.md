@@ -8,3 +8,4 @@ A set of starter projects with proper (manual) dependency injection and minimal 
 
 ## Front End
 - [Typescript with module support](front-end/typescript-dom/README.md)
+- [React without typescript and bundler](front-end/plain-react/README.md)
