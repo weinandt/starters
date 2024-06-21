@@ -1,5 +1,9 @@
 # Open API Node/Typescript
 
+## To run:
+1. `npm run start`
+2. http://localhost:3000/docs
+
 ## Generating Types
 Types used in the server are generated from the openapi spec. There is a cli tool which does the generation called `open api generator`: https://openapi-generator.tech/docs
 
