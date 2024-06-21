@@ -3,6 +3,7 @@ import swaggerUI from 'swagger-ui-express'
 import fs from "node:fs"
 import yaml from 'yaml'
 import * as OpenApiValidator from 'express-openapi-validator';
+import { Board } from './generated-types/model/models';
 
 const file  = fs.readFileSync('./openapi.yaml', 'utf8')
 const swaggerDocument = yaml.parse(file)
@@ -30,10 +31,12 @@ const validationMiddleware = OpenApiValidator.middleware({
 
 })
 app.use(validationMiddleware);
-app.get('/board', (req, res) => {
-    res.json({
-        'test': 'asdf'
-    })
+app.get('/board', (req: any, res: any) => {
+    const board: Board = {
+      test: 'asdf',
+      testInteger: 1
+    }
+    res.status(200).json(board)
 })
 
 

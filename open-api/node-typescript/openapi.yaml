@@ -27,3 +27,5 @@ components:
       properties:
         test:
           type: string
+        testInteger:
+          type: integer
