@@ -13,6 +13,8 @@ The cli tool can also be used to generate clients/types in other languages.
     - Validates the spec asynchronously and doesn't return the error until the middleware is called.
 
 ## TODO:
+- Add required properties.
+- Add post example with payload
 - Api server mocks which can be imported in other service's tests
 - How to handle 301 redirects (so auth servers can re-direct)
 - How to use for security testing
