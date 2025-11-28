@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Rust
+/target/
+**/target/
+
+# Compiled artifacts
+*.rlib
+*.rmeta
+*.so
+*.dylib
+*.dll
+*.exe
+*.exe\n
+# Debug symbols
+*.dSYM/
