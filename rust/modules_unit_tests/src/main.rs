@@ -3,7 +3,7 @@ mod wal;
 use crate::wal::WAL;
 use crate::wal::in_memory_wal::InMemoryWAL;
 
-async fn main() {
+fn main() {
     let mut in_mem_wal = InMemoryWAL::new();
     in_mem_wal.append("hi".to_string());
     in_mem_wal.append("yup".to_string());
