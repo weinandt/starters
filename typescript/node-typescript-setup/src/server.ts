@@ -5,3 +5,4 @@ export class Server {
 }
 
 const server = new Server()
+server.start()
