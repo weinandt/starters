@@ -6,18 +6,18 @@ import { Pool } from 'pg'
 
 import { createApp } from '../../app'
 import { createConfig, DevEnvironment } from '../../config'
-import { closeServer, listen, readJson, startPostgresAndSetUpTables, type RunningPostgres } from './e2eUtils'
+import { closeServer, listen, readJson, startPostgresAndSetUpTables } from './e2eUtils'
+import { type StartedPostgreSqlContainer } from '@testcontainers/postgresql'
 
 describe('user database e2e', () => {
-    const imageTag = `node-rest-api-e2e-postgres:${process.pid}-${Date.now()}`
-    const databaseConfig = createConfig(DevEnvironment.Local).dbConfig
-    let postgres: RunningPostgres | null = null
+    let postgres: StartedPostgreSqlContainer | null = null
     let pool: Pool | null = null
     let server: HttpServer | null = null
     let baseUrl: string | null = null
 
     before(async () => {
-        postgres = await startPostgresAndSetUpTables(imageTag, databaseConfig)
+        const databaseConfig = createConfig(DevEnvironment.Local).dbConfig
+        postgres = await startPostgresAndSetUpTables(databaseConfig)
         pool = new Pool(databaseConfig)
 
         const app = createApp({ pool })

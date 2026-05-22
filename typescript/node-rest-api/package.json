@@ -12,23 +12,23 @@
     "test": "node -r ts-node/register --test \"src/**/*.test.ts\"",
     "create-types": "npx openapi-typescript@7.13.0 openapi.json -o src/schema.ts",
     "double-check": "npm run create-types && npm run build && npm run test",
-    "db:build": "docker build -f src/db/Dockerfile -t postgres .",
-    "db:run": "docker run --rm --name ${DB_CONTAINER_NAME:-node-rest-api-postgres} -p ${PGPORT:-5432}:5432 postgres"
+    "db": "docker pull postgres:18.4 && docker run --rm --name node-rest-api-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=appdb -p 5432:5432 postgres:18.4"
   },
   "devDependencies": {
+    "@testcontainers/postgresql": "^11.14.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.0.3",
     "@types/pg": "^8.20.0",
     "@types/supertest": "^7.2.0",
-    "dockerode": "^5.0.0",
+    "@types/swagger-ui-express": "^4.1.8",
     "supertest": "^7.2.2",
-    "testcontainers": "^11.14.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2"
   },
   "dependencies": {
     "express": "^5.2.1",
     "express-openapi-validator": "^5.6.2",
-    "pg": "^8.20.0"
+    "pg": "^8.20.0",
+    "swagger-ui-express": "^5.0.1"
   }
 }

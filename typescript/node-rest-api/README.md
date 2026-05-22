@@ -27,7 +27,7 @@ This regenerates the types, builds the project, and runs the test suite.
 Start the database in one terminal:
 
 ```sh
-npm run db:build && npm run db:run
+npm run db
 ```
 
 Then start the API in another terminal:
@@ -36,11 +36,23 @@ Then start the API in another terminal:
 npm run local
 ```
 
+Swagger UI is available at:
+
+```text
+http://localhost:3000/api-docs
+```
+
+The raw OpenAPI document is served at:
+
+```text
+http://localhost:3000/openapi.json
+```
+
 ## E2E Tests
 
 E2E tests live in `src/tests/e2e`.
 
-They use `dockerode` to build the local Postgres image from `src/db/Dockerfile`, start a temporary Postgres container, wait until the database accepts connections, create the schema tables, and then run API calls against a locally started Express server.
+They use `testcontainers` to start a temporary `postgres:18` container, wait until the database accepts connections, create the schema tables, and then run API calls against a locally started Express server.
 
 The database-backed e2e test does not use `supertest`; it sends real HTTP requests with `fetch`.
 
@@ -61,4 +73,3 @@ Just go to debugging tab and select either the "Debug Server" or "Debug Tests"
         - determine if there any security issues
 - Have skils to do db reviews to ensure all queries are on indexes
 - Implement throttling and quotas
-- Add swagger UI.
