@@ -94,14 +94,9 @@ sudo mkfs.ext4 /dev/loop0
 - `mkfs.ext4`: Make filesystem with ext4 format
 - `/dev/loop0`: The device to format
 
-### 3.2 Format slow storage with ext4
+### 3.2 Format fast storage with ext4 (only fast storage needs formatting before mounting)
 
-```bash
-sudo mkfs.ext4 /dev/loop1
-```
-
-**Argument explanation:**
-- Same as above for the second device
+The slow storage will be formatted after device-mapper setup (Step 7).
 
 ## Step 4: Create Mount Points
 
@@ -117,11 +112,12 @@ sudo mkdir -p /mnt/fast-storage /mnt/slow-storage
 - `/mnt/fast-storage`: Mount point for fast storage
 - `/mnt/slow-storage`: Mount point for slow storage
 
-## Step 5: Mount the Loopback Devices
+## Step 5: Mount the Fast Storage Device
+
+Mount only the fast storage device (we'll handle slow storage after device-mapper setup):
 
 ```bash
 sudo mount /dev/loop0 /mnt/fast-storage
-sudo mount /dev/loop1 /mnt/slow-storage
 ```
 
 **Argument explanation:**
@@ -129,9 +125,9 @@ sudo mount /dev/loop1 /mnt/slow-storage
 - `/dev/loop0`: Device to mount
 - `/mnt/fast-storage`: Directory where device will be mounted
 
-Verify with:
+Verify:
 ```bash
-mount | grep /mnt/
+mount | grep /mnt/fast-storage
 ```
 
 ## Step 6: Set Up Device-Mapper Delay
@@ -161,19 +157,7 @@ echo "5G = 5 * 1024 * 1024 * 1024 / 512 = 10485760 sectors"
 
 For your 5GB file, this is 10485760 sectors. For different sizes, adjust accordingly.
 
-### 6.3 Unmount the loop device before creating device-mapper table
-
-We need to unmount /dev/loop1 first to allow device-mapper to take control:
-
-```bash
-sudo umount /mnt/slow-storage
-```
-
-**Argument explanation:**
-- `umount`: Detach filesystem from mount point
-- `/mnt/slow-storage`: The mount point to detach
-
-### 6.4 Create device-mapper table for delayed I/O
+### 6.3 Create device-mapper table for delayed I/O
 
 ```bash
 echo "0 10485760 delay /dev/loop1 0 0 5 5" | sudo dmsetup create slow-io-delay
