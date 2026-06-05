@@ -36,13 +36,19 @@ INSERT INTO events VALUES
 SELECT * FROM events;
 ```
 
-5. Inspect postgres: `docker compose exec postgres psql -U ducklake -d ducklake_catalog`
+5. See the change data feed for the 'last week':
+
+```sql
+FROM table_changes('events', now() - INTERVAL '1 week', now());
+```
+
+6. Inspect postgres: `docker compose exec postgres psql -U ducklake -d ducklake_catalog`
 
 `select * from ducklake_column;`
 
 Should see the three columns.
 
-6. Clean Up
+7. Clean Up
 
 The named volumes survive `docker compose down`. To delete named volumes, run `docker compose down -v`.
 
