@@ -1,0 +1,6 @@
+FROM duckdb/duckdb:latest
+
+# INSTALL persists extension files in the image. LOAD is per DuckDB process,
+# so runtime sessions still load the extensions before using them.
+RUN ["duckdb", "-c", "INSTALL ducklake;"]
+RUN ["duckdb", "-c", "INSTALL postgres;"]
