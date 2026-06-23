@@ -11,4 +11,11 @@
 6. `python test_pytorch.py`
 7. `deactivate`
 
+## Test GPU Usage on mac
+1. Open the virtual environment
+2. `python mac_pytorch.py`
+
+If you open the Activity Monitor, you can see gpu usage spike.
+
 ## Resources
+Tutorials: https://docs.pytorch.org/tutorials/
